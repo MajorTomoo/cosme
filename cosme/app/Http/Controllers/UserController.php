@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller {
     
-   public function postSignUp(Request $request){
+   public function postSignup(Request $request){
        
        $email=$request['email'];
        $password=bcrypt($request['password']);
@@ -16,7 +16,7 @@ class UserController extends Controller {
        
        return redirect()->back();
    } 
-   public function postSignIn(Request $request){
+   public function postSignin(Request $request){
        
        
        

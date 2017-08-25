@@ -17,3 +17,11 @@ Route::get('/', function () {
 Route::get('/register', function () {
         return view('register');
 });
+    Route::get('/sign', function () {
+        return view('sign');
+    });
+ Route::post('/signup',[
+ 'use'=>'UserController@postSignup',
+ 'as'=>'signup'   
+ ]);
+        
