@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,11 +19,22 @@ Route::get('/', function () {
 Route::get('/register', function () {
         return view('register');
 });
-    Route::get('/sign', function () {
-        return view('sign');
-    });
+Route::get('/signin', function () {
+        return view('signin');
+});
+Route::get('/dashboard',[
+ 'uses'=>'UserController@getDashboard',
+ 'as'=>'dashboard' 
+] 
+);    
  Route::post('/signup',[
- 'use'=>'UserController@postSignup',
+ 
+ 'uses'=>'UserController@postSignup',
  'as'=>'signup'   
+ ]);
+ Route::post('/signin',[
+     
+     'uses'=>'UserController@postSignin',
+     'as'=>'signin'
  ]);
         
