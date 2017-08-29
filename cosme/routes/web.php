@@ -26,7 +26,17 @@ Route::get('/dashboard',[
  'uses'=>'UserController@getDashboard',
  'as'=>'dashboard' 
 ] 
-);    
+);  
+Route::get('/',[
+    'uses'=>'UserController@getHome',
+    'as'=>'home'
+]
+    );  
+Route::get('/logout',[
+    'uses'=>'UserController@getLogOut',
+    'as'=>'logout'
+]
+    ); 
  Route::post('/signup',[
  
  'uses'=>'UserController@postSignup',
