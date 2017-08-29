@@ -12,15 +12,16 @@ class UserController extends Controller {
        $this->validate($request,[
            'email'=>'email|unique:users',
            'password'=>'required|min:6',
-           'verifypassword'=>'required'
-           
+           'verifypassword'=>'required',
+           'name'=>'required'
        ]);
        $email=$request['email'];
        $password=bcrypt($request['password']);
-       
+       $name=$request['name'];
        $user=new User();
        $user->email=$email;
        $user->password=$password;
+       $user->name=$name;
        $user->save();
        
        return redirect()->route('dashboard');
@@ -28,8 +29,9 @@ class UserController extends Controller {
    public function postSignin(Request $request){
        $this->validate($request,[
            'email'=>'required',
-           'password'=>'required'
-       ]);
+           'password'=>'required',
+           
+       ]);   
        if(Auth::attempt(['email'=>$request['email'],'password'=>$request['password']])){
            
            return redirect()->route('home');
@@ -47,5 +49,9 @@ class UserController extends Controller {
     public function getHome(){
         
        return view('welcome'); 
+    }
+    public function getAdminPage(){
+        
+        return view('admin');
     }
 }

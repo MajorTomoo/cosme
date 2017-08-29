@@ -22,11 +22,21 @@ Route::get('/register', function () {
 Route::get('/signin', function () {
         return view('signin');
 });
+    Route::get('/admin', function () {
+        return view('admin');
+    });
 Route::get('/dashboard',[
  'uses'=>'UserController@getDashboard',
  'as'=>'dashboard' 
 ] 
 );  
+Route::get('/admin',[
+    'uses'=>'UserController@getAdminPage',
+    'as'=>'admin',
+    'middleware'=>'role',
+    'role'=>['Admin']
+]
+    ); 
 Route::get('/',[
     'uses'=>'UserController@getHome',
     'as'=>'home'
