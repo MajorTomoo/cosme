@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 class UserController extends Controller {
+    
     public function getDashboard(){
         
         return view('dashboard');
@@ -37,7 +38,7 @@ class UserController extends Controller {
            return redirect()->route('home');
            
        }
-      return redirect()->back();
+      return redirect()->back()->with('message','Your email or password is not correct');
        
    }    
     public function getLogOut(){
@@ -46,12 +47,5 @@ class UserController extends Controller {
        return redirect()->route('home');
         
     }
-    public function getHome(){
-        
-       return view('welcome'); 
-    }
-    public function getAdminPage(){
-        
-        return view('admin');
-    }
+    
 }

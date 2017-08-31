@@ -8,18 +8,10 @@ Sign In
 <div class='row'><div class='col-md-3'></div>
 <div class='col-md-6' id='register-container'>
 <div class="page-header"><h4>Sign in with email</h4></div>
-@if(count($errors)>0)
-<div class='row'>
-<div class='col-md-12' >
-<ul>@foreach($errors->all() as $error)
-<li id="errormsg">{{$error}}</li>
-@endforeach
-</ul>
-
-
-</div>
-</div>
-@endif
+@component('includes.error-msg')
+@endcomponent
+@component('includes.alert-msg')
+@endcomponent
 <div class=row>
 <div class='col-md-8'>
 <form action="{{ route('signin') }}" method="post">

@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\UserController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,29 +21,54 @@ Route::get('/register', function () {
 Route::get('/signin', function () {
         return view('signin');
 });
-    Route::get('/admin', function () {
-        return view('admin');
-    });
 Route::get('/dashboard',[
  'uses'=>'UserController@getDashboard',
  'as'=>'dashboard' 
 ] 
 );  
 Route::get('/admin',[
-    'uses'=>'UserController@getAdminPage',
+    'uses'=>'HomeController@getAdminPage',
     'as'=>'admin',
     'middleware'=>'role',
     'role'=>['Admin']
 ]
     ); 
+Route::get('/add-product',[
+    'uses'=>'HomeController@getAddProduct',
+    'as'=>'add-product',
+    'middleware'=>'role',
+    'role'=>['Admin']
+]
+    ); 
+
+Route::get('/edit-product/{id}',[
+    'uses'=>'ProductController@getEdit',
+    'as'=>'edit-product',
+    'middleware'=>'role',
+    'role'=>['Admin']
+]
+    ); 
+Route::get('/delete-product/{id}',[
+    'uses'=>'ProductController@deleteProduct',
+    'as'=>'delete-product',
+    'middleware'=>'role',
+    'role'=>['Admin']
+]
+    ); 
 Route::get('/',[
-    'uses'=>'UserController@getHome',
+    'uses'=>'HomeController@getHome',
     'as'=>'home'
 ]
     );  
 Route::get('/logout',[
     'uses'=>'UserController@getLogOut',
     'as'=>'logout'
+]
+    ); 
+Route::get('/productimg/{filedate}/{filename}',[
+    
+    'uses'=>'ProductController@getProductImage',
+    'as'=>'account.img'
 ]
     ); 
  Route::post('/signup',[
@@ -56,5 +80,20 @@ Route::get('/logout',[
      
      'uses'=>'UserController@postSignin',
      'as'=>'signin'
+ ]);
+ //product management
+ Route::post('/addproduct',[
+     
+     'uses'=>'ProductController@addProduct',
+     'as'=>'addproduct',
+     'middleware'=>'role',
+     'role'=>['Admin']
+ ]);
+ Route::post('/editproduct',[
+     
+     'uses'=>'ProductController@editProduct',
+     'as'=>'editproduct',
+     'middleware'=>'role',
+     'role'=>['Admin']
  ]);
         

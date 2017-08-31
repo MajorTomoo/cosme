@@ -7,18 +7,8 @@ Sign Up
 <div class='row'><div class='col-md-3'></div>
 <div class='col-md-6' id='register-container'>
 <div class="page-header"><h4>Sign up using your email address</h4></div>
-@if(count($errors)>0)
-<div class='row'>
-<div class='col-md-12' >
-<ul>@foreach($errors->all() as $error)
-<li id="errormsg">{{$error}}</li>
-@endforeach
-</ul>
-
-
-</div>
-</div>
-@endif
+@component('includes.error-msg')
+@endcomponent
 <div class='row'>
 <div class='col-md-8'>
 <form action="{{ route('signup') }}" method="post">
